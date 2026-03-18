@@ -3,77 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صدقة جارية | تطبيق طمأنينة</title>
+    <title>تطبيق طمأنينة | صدقة جارية</title>
+    <!-- خط تجوال وأيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* إضافة لمسات سريعة للتنسيق لضمان عمل الأقسام الجديدة */
+        .quran-container { width: 100%; height: 80vh; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .dua-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-right: 5px solid var(--primary); font-size: 18px; line-height: 1.6; }
+        .category-header { color: var(--secondary); margin: 25px 0 15px; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 5px; }
+    </style>
 </head>
 <body>
 
 <div class="app-container">
+    <!-- القائمة الجانبية المطورة -->
     <aside class="sidebar">
         <div class="app-logo">
-            <i class="fa-solid fa-kaaba" style="font-size: 40px; color: var(--accent);"></i>
-            <h2 style="margin-top:10px;">صدقة جارية</h2>
-            <p style="font-size:12px; opacity:0.8;">اللهم اغفر لفقيدتنا وارحمها</p>
+            <i class="fa-solid fa-kaaba" style="font-size: 50px; color: var(--accent);"></i>
+            <h2 style="margin-top:15px; font-weight: 900;">طمأنينة</h2>
+            <p style="font-size:13px; color: #eee; margin-top: 5px;">صدقة جارية عن روح فقيدتنا</p>
         </div>
         
         <nav class="nav-menu">
-            <button class="menu-item active" data-target="azkar-section"><i class="fa-solid fa-heart"></i> الأذكار اليومية</button>
-            <button class="menu-item" data-target="prayers-section"><i class="fa-solid fa-clock"></i> مواقيت الصلاة</button>
-            <button class="menu-item" data-target="sebha-section"><i class="fa-solid fa-fingerprint"></i> سبحة إلكترونية</button>
-            <button class="menu-item" data-target="quran-section"><i class="fa-solid fa-book-open"></i> المصحف الكريم</button>
-            <button class="menu-item" data-target="dua-section"><i class="fa-solid fa-hands-praying"></i> أدعية للمتوفى</button>
-            <button class="menu-item" data-target="names-section"><i class="fa-solid fa-star"></i> أسماء الله الحسنى</button>
+            <button class="menu-item active" data-target="azkar-page"><i class="fa-solid fa-heart"></i> حصن المسلم</button>
+            <button class="menu-item" data-target="quran-page"><i class="fa-solid fa-book-open"></i> القرآن الكريم</button>
+            <button class="menu-item" data-target="prayer-page"><i class="fa-solid fa-clock"></i> مواقيت الصلاة</button>
+            <button class="menu-item" data-target="sebha-page"><i class="fa-solid fa-dharmachakra"></i> السبحة الرقمية</button>
+            <button class="menu-item" data-target="dua-page"><i class="fa-solid fa-hands-holding-child"></i> أدعية مأثورة</button>
         </nav>
     </aside>
 
     <main class="main-content">
         
-        <div id="azkar-section" class="page-content">
-            <h1 class="location-title">حصن المسلم</h1>
-            <div class="azkar-grid">
-                <div class="zekr-card"><small>الصباح</small><p class="card-text">أصبحنا وأصبح الملك لله والحمد لله.</p></div>
-                <div class="zekr-card"><small>الصباح</small><p class="card-text">اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت.</p></div>
-                <div class="zekr-card"><small>الصباح</small><p class="card-text">رضيت بالله رباً وبالإسلام ديناً وبمحمد نبياً.</p></div>
-                <div class="zekr-card"><small>المساء</small><p class="card-text">أمسينا وأمسى الملك لله والحمد لله.</p></div>
-                <div class="zekr-card"><small>المساء</small><p class="card-text">أعوذ بكلمات الله التامات من شر ما خلق.</p></div>
-                <div class="zekr-card"><small>المساء</small><p class="card-text">اللهم إنك عفو كريم تحب العفو فاعفُ عني.</p></div>
-                <div class="zekr-card"><small>استغفار</small><p class="card-text">أستغفر الله العظيم واتوب إليه (100 مرة).</p></div>
-                <div class="zekr-card"><small>تسبيح</small><p class="card-text">سبحان الله وبحمده سبحان الله العظيم.</p></div>
-                <div class="zekr-card"><small>تذكير</small><p class="card-text">لا حول ولا قوة إلا بالله العلي العظيم.</p></div>
-                <div class="zekr-card"><small>تذكير</small><p class="card-text">سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر.</p></div>
-                </div>
+        <!-- قسم الأذكار الشامل (أكثر من 50 ذكر) -->
+        <div id="azkar-page" class="page-content">
+            <h1 class="location-title"><i class="fa-solid fa-sun"></i> أذكار اليوم والليلة</h1>
+            <div id="azkar-container" class="azkar-grid">
+                <!-- سيتم ملؤها بـ 50+ ذكر من خلال JS -->
+            </div>
         </div>
 
-        <div id="prayers-section" class="page-content" style="display: none;">
+        <!-- قسم القرآن الكريم -->
+        <div id="quran-page" class="page-content" style="display: none;">
+            <h1 class="location-title"><i class="fa-solid fa-book"></i> المصحف الإلكتروني</h1>
+            <div class="quran-container">
+                <iframe src="https://quran.com/" style="width:100%; height:100%; border:none;"></iframe>
+            </div>
+        </div>
+
+        <!-- قسم مواقيت الصلاة -->
+        <div id="prayer-page" class="page-content" style="display: none;">
             <div class="header">
                 <h1 class="location-title">مواقيت الصلاة</h1>
-                <p id="gregorian-date" class="date-container">جاري التحديث...</p>
+                <p id="gregorian-date" class="date-container">جاري جلب التاريخ...</p>
             </div>
-            <div id="loading" class="loading"><i class="fas fa-spinner fa-spin"></i> جاري جلب الأوقات...</div>
+            <div id="loading" class="loading"><i class="fas fa-spinner fa-spin"></i> جاري تحديث الأوقات...</div>
             <div class="prayers-grid" id="prayers-container" style="display: none;">
-                </div>
+                <!-- محتوى الصلاة يظهر هنا عبر JS -->
+            </div>
         </div>
 
-        <div id="sebha-section" class="page-content" style="display: none;">
+        <!-- قسم السبحة -->
+        <div id="sebha-page" class="page-content" style="display: none;">
             <div class="sebha-container">
                 <div class="sebha-counter" id="sebha-count">0</div>
-                <button class="sebha-btn" id="sebha-click-btn">اضغط للتسبيح</button>
-                <button class="reset-btn" id="sebha-reset-btn">تصفير العداد ↺</button>
+                <button class="sebha-btn" id="sebha-click-btn">سبّح</button>
+                <button class="reset-btn" id="sebha-reset-btn">تصفير العداد</button>
+                <p style="margin-top: 20px; color: var(--primary);">"فاذكروني أذكركم"</p>
             </div>
         </div>
 
-        <div id="quran-section" class="page-content" style="display: none;">
-            <iframe src="https://quran.com/" style="width:100%; height:85vh; border:none; border-radius:15px;"></iframe>
-        </div>
-
-        <div id="dua-section" class="page-content" style="display: none;">
-            <h1 class="location-title">أدعية مأثورة للمتوفى</h1>
-            <div class="about-grid">
-                <div class="about-card"><p class="card-text">اللهم اغفر لها وارحمها، وعافها واعف عنها، وأكرم نزلها.</p></div>
-                <div class="about-card"><p class="card-text">اللهم أبدلها داراً خيراً من دارها، وأهلاً خيراً من أهلها.</p></div>
-                <div class="about-card"><p class="card-text">اللهم اجعل قبرها روضة من رياض الجنة ولا تجعله حفرة من حفر النار.</p></div>
-                <div class="about-card"><p class="card-text">اللهم ثبّتها عند السؤال، ونقّها من الخطايا كما ينقى الثوب الأبيض من الدنس.</p></div>
+        <!-- قسم الأدعية -->
+        <div id="dua-page" class="page-content" style="display: none;">
+            <h1 class="location-title">جامع الدعاء</h1>
+            <div class="dua-list">
+                <div class="dua-card">اللهم اغفر لجميع موتى المسلمين الذين شهدوا لك بالوحدانية ولنبيك بالرسالة وماتوا على ذلك.</div>
+                <div class="dua-card">اللهم آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.</div>
+                <div class="dua-card">يا حي يا قيوم برحمتك أستغيث، أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.</div>
+                <div class="dua-card">اللهم إنك عفو كريم تحب العفو فاعفُ عنا.</div>
+                <div class="dua-card">ربّنا هب لنا من أزواجنا وذرياتنا قرة أعين واجعلنا للمتقين إماماً.</div>
             </div>
         </div>
 
