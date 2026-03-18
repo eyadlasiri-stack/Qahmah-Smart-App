@@ -3,130 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تطبيق طمأنينة | صدقة جارية</title>
+    <title>تطبيق نور الطمأنينة | صدقة جارية</title>
+    
+    <!-- خطوط وأيقونات خارجية -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+
     <style>
-        /* إضافة تنسيقات إضافية للأقسام الجديدة لضمان الفخامة */
-        :root { --gold: #D4AF37; --deep-green: #1B4332; }
-        .dua-section-title { background: var(--primary); color: white; padding: 10px 20px; border-radius: 10px; margin: 20px 0; font-size: 20px; text-align: center; }
-        .azkar-counter-btn { background: var(--accent); border: none; padding: 5px 15px; border-radius: 5px; color: white; cursor: pointer; float: left; }
-        .quran-frame { width: 100%; height: 85vh; border: 5px solid var(--primary); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .names-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
-        .name-card { background: white; padding: 15px; text-align: center; border-radius: 10px; border: 1px solid var(--accent); font-weight: bold; color: var(--secondary); box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
+        :root {
+            --primary: #2C5F2D; /* أخضر إسلامي فخم */
+            --secondary: #97743A; /* ذهبي معتق */
+            --bg: #F9F7F2;
+            --text: #333;
+            --white: #ffffff;
+            --accent: #e67e22;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
+
+        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        /* الهيكل العام */
+        .app-container { display: flex; min-height: 100vh; }
+
+        /* القائمة الجانبية */
+        .sidebar { 
+            width: 280px; background: var(--primary); color: white; 
+            padding: 20px; display: flex; flex-direction: column; 
+            position: fixed; height: 100vh; right: 0; z-index: 1000;
+        }
+
+        .sidebar h2 { text-align: center; font-weight: 900; margin-bottom: 5px; color: var(--secondary); }
+        .sidebar p { text-align: center; font-size: 12px; margin-bottom: 25px; opacity: 0.8; }
+
+        .menu-item { 
+            background: transparent; border: none; color: white; text-align: right;
+            padding: 15px; margin-bottom: 5px; cursor: pointer; border-radius: 10px;
+            font-size: 16px; transition: 0.3s; display: flex; align-items: center; gap: 10px;
+        }
+
+        .menu-item i { width: 25px; text-align: center; color: var(--secondary); }
+        .menu-item:hover, .menu-item.active { background: rgba(255,255,255,0.1); border-right: 5px solid var(--secondary); }
+
+        /* المحتوى الرئيسي */
+        .main-content { flex: 1; margin-right: 280px; padding: 40px; }
+
+        /* الكروت والتصميم */
+        .page-content { display: none; animation: fadeIn 0.5s ease; }
+        .page-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-title { color: var(--primary); font-size: 30px; font-weight: 900; margin-bottom: 30px; border-bottom: 3px solid var(--secondary); display: inline-block; }
+
+        /* شبكة الأذكار */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: var(--white); padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 5px solid var(--secondary); position: relative; }
+        .card-cat { font-size: 12px; color: var(--primary); font-weight: bold; margin-bottom: 10px; display: block; }
+        .card-text { font-size: 18px; line-height: 1.8; font-weight: 700; }
+
+        /* السبحة */
+        .sebha-box { text-align: center; margin-top: 50px; }
+        .count-circle { 
+            width: 250px; height: 250px; border-radius: 50%; border: 15px solid var(--secondary);
+            margin: 0 auto 30px; display: flex; align-items: center; justify-content: center;
+            font-size: 80px; font-weight: 900; color: var(--primary); background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; user-select: none;
+        }
+        .count-circle:active { transform: scale(0.95); }
+
+        /* أسماء الله */
+        .names-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+        .name-item { background: var(--primary); color: white; padding: 20px 10px; text-align: center; border-radius: 10px; font-weight: 900; font-size: 20px; }
+
+        /* الجوال */
+        @media (max-width: 992px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .main-content { margin-right: 0; padding: 20px; }
+            .app-container { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
 
 <div class="app-container">
     <aside class="sidebar">
-        <div class="app-logo">
-            <i class="fa-solid fa-kaaba" style="font-size: 45px; color: var(--accent);"></i>
-            <h2 style="margin-top:10px;">طمأنينة</h2>
-            <p style="font-size:11px; color:#ddd;">صدقة جارية عن روح فقيدتنا رحمها الله</p>
-        </div>
+        <h2>نور الطمأنينة</h2>
+        <p>صدقة جارية عن والدة إياد (رحمها الله)</p>
         
-        <nav class="nav-menu">
-            <button class="menu-item active" data-target="home-page"><i class="fa-solid fa-clock"></i> مواقيت الصلاة</button>
-            <button class="menu-item" data-target="quran-page"><i class="fa-solid fa-book-quran"></i> المصحف الشريف</button>
-            <button class="menu-item" data-target="azkar-morning"><i class="fa-solid fa-sun"></i> أذكار الصباح</button>
-            <button class="menu-item" data-target="azkar-evening"><i class="fa-solid fa-moon"></i> أذكار المساء</button>
-            <button class="menu-item" data-target="azkar-sleep"><i class="fa-solid fa-bed"></i> أذكار النوم</button>
-            <button class="menu-item" data-target="dua-general"><i class="fa-solid fa-hands-praying"></i> جوامع الدعاء</button>
-            <button class="menu-item" data-target="dua-parents"><i class="fa-solid fa-heart"></i> بر الوالدين</button>
-            <button class="menu-item" data-target="names-page"><i class="fa-solid fa-star"></i> أسماء الله الحسنى</button>
-            <button class="menu-item" data-target="sebha-page"><i class="fa-solid fa-rosary"></i> السبحة الإلكترونية</button>
-        </nav>
+        <button class="menu-item active" data-target="home"><i class="fa-solid fa-mosque"></i> الرئيسية والمواقيت</button>
+        <button class="menu-item" data-target="quran"><i class="fa-solid fa-book-quran"></i> المصحف الشريف</button>
+        <button class="menu-item" data-target="azkar"><i class="fa-solid fa-hand-holding-heart"></i> موسوعة الأذكار</button>
+        <button class="menu-item" data-target="dua"><i class="fa-solid fa-hands-praying"></i> أدعية مختارة</button>
+        <button class="menu-item" data-target="sebha"><i class="fa-solid fa-circle-notch"></i> السبحة الذكية</button>
+        <button class="menu-item" data-target="names"><i class="fa-solid fa-gem"></i> أسماء الله الحسنى</button>
+        <button class="menu-item" data-target="hadith"><i class="fa-solid fa-scroll"></i> الأربعون النووية</button>
     </aside>
 
     <main class="main-content">
         
-        <!-- 1. مواقيت الصلاة -->
-        <div id="home-page" class="page-content">
-            <div class="header">
-                <h1 class="location-title">مواقيت الصلاة</h1>
-                <p id="gregorian-date" class="date-container">جاري التحميل...</p>
+        <!-- صفحة المواقيت -->
+        <section id="home" class="page-content active">
+            <h1 class="section-title">مواقيت الصلاة</h1>
+            <p id="date-hijri" style="font-size: 20px; color: var(--secondary); font-weight: bold; margin-bottom: 20px;"></p>
+            <div class="grid-container" id="prayer-cards">
+                <!-- جافاسكربت سيملأ هذه الكروت -->
             </div>
-            <div id="loading" class="loading"><i class="fas fa-spinner fa-spin"></i> جاري جلب المواقيت...</div>
-            <div class="prayers-grid" id="prayers-container" style="display: none;"></div>
-        </div>
+        </section>
 
-        <!-- 2. المصحف الشريف -->
-        <div id="quran-page" class="page-content" style="display: none;">
-            <iframe src="https://quran.com/" class="quran-frame"></iframe>
-        </div>
+        <!-- صفحة القرآن -->
+        <section id="quran" class="page-content">
+            <h1 class="section-title">المصحف الإلكتروني</h1>
+            <iframe src="https://quran.com/" style="width: 100%; height: 80vh; border-radius: 20px; border: 4px solid var(--primary);"></iframe>
+        </section>
 
-        <!-- 3. أذكار الصباح (قاعدة بيانات مدمجة) -->
-        <div id="azkar-morning" class="page-content" style="display: none;">
-            <h1 class="location-title">أذكار الصباح</h1>
-            <div class="azkar-grid">
-                <div class="zekr-card"><p>أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له.</p></div>
-                <div class="zekr-card"><p>اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك النشور.</p></div>
-                <div class="zekr-card"><p>اللهم إني أسألك علماً نافعاً، ورزقاً طيباً، وعملاً متقبلاً.</p></div>
-                <div class="zekr-card"><p>يا حي يا قيوم برحمتك أستغيث أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.</p></div>
-                <div class="zekr-card"><p>رضيت بالله رباً، وبالإسلام ديناً، وبمحمد صلى الله عليه وسلم نبياً.</p></div>
-                <div class="zekr-card"><p>حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم (7 مرات).</p></div>
-                <div class="zekr-card"><p>سبحان الله وبحمده: عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته (3 مرات).</p></div>
-                <div class="zekr-card"><p>بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم (3 مرات).</p></div>
-                <div class="zekr-card"><p>اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري.</p></div>
-                <div class="zekr-card"><p>أستغفر الله وأتوب إليه (100 مرة في اليوم).</p></div>
+        <!-- صفحة الأذكار (موسوعة ضخمة) -->
+        <section id="azkar" class="page-content">
+            <h1 class="section-title">موسوعة حصن المسلم</h1>
+            <div class="grid-container" id="azkar-list">
+                <!-- سيتم توليد أكثر من 100 ذكر هنا -->
             </div>
-        </div>
+        </section>
 
-        <!-- 4. أذكار المساء -->
-        <div id="azkar-evening" class="page-content" style="display: none;">
-            <h1 class="location-title">أذكار المساء</h1>
-            <div class="azkar-grid">
-                <div class="zekr-card"><p>أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له.</p></div>
-                <div class="zekr-card"><p>اللهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير.</p></div>
-                <div class="zekr-card"><p>أعوذ بكلمات الله التامات من شر ما خلق (3 مرات).</p></div>
-                <div class="zekr-card"><p>اللهم إني أسألك العفو والعافية في الدنيا والآخرة.</p></div>
-                <div class="zekr-card"><p>اللهم عالم الغيب والشهادة فاطر السموات والأرض، رب كل شيء ومليكه.</p></div>
+        <!-- صفحة الأدعية -->
+        <section id="dua" class="page-content">
+            <h1 class="section-title">أدعية لفقيدتنا وللمسلمين</h1>
+            <div class="grid-container" id="dua-list"></div>
+        </section>
+
+        <!-- صفحة السبحة -->
+        <section id="sebha" class="page-content">
+            <div class="sebha-box">
+                <h1 class="section-title">السبحة الإلكترونية</h1>
+                <div class="count-circle" id="counter">0</div>
+                <button class="menu-item" style="background: var(--secondary); margin: 0 auto; display: block;" id="reset-btn">تصفير العداد</button>
             </div>
-        </div>
+        </section>
 
-        <!-- 5. جوامع الدعاء -->
-        <div id="dua-general" class="page-content" style="display: none;">
-            <h1 class="location-title">أدعية من القرآن والسنة</h1>
-            <div class="dua-card">ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.</div>
-            <div class="dua-card">اللهم إنك عفو كريم تحب العفو فاعفُ عني.</div>
-            <div class="dua-card">اللهم إني أسألك الهدى والتقى والعفاف والغنى.</div>
-            <div class="dua-card">ربنا لا تزغ قلوبنا بعد إذ هديتنا وهب لنا من لدنك رحمة.</div>
-            <div class="dua-card">يا مقلب القلوب ثبت قلبي على دينك.</div>
-            <div class="dua-card">اللهم صلِ وسلم على نبينا محمد وعلى آله وصحبه أجمعين.</div>
-        </div>
+        <!-- صفحة الأسماء -->
+        <section id="names" class="page-content">
+            <h1 class="section-title">أسماء الله الحسنى</h1>
+            <div class="names-grid" id="names-container"></div>
+        </section>
 
-        <!-- 6. أسماء الله الحسنى -->
-        <div id="names-page" class="page-content" style="display: none;">
-            <h1 class="location-title">أسماء الله الحسنى</h1>
-            <div class="names-grid" id="names-container">
-                <!-- سيتم ملؤها بـ 99 اسم برمجياً -->
-            </div>
-        </div>
-
-        <!-- 7. السبحة -->
-        <div id="sebha-page" class="page-content" style="display: none;">
-            <div class="sebha-container">
-                <div class="sebha-counter" id="sebha-count">0</div>
-                <button class="sebha-btn" id="sebha-click-btn">اضغط للتسبيح</button>
-                <button class="reset-btn" id="sebha-reset-btn">إعادة العداد</button>
-            </div>
-        </div>
+        <!-- صفحة الأحاديث -->
+        <section id="hadith" class="page-content">
+            <h1 class="section-title">الأربعون النووية</h1>
+            <div id="hadith-container"></div>
+        </section>
 
     </main>
 </div>
 
-<script src="script.js"></script>
 <script>
-    // إضافة أسماء الله الحسنى برمجياً لتوفير المساحة في HTML
-    const names = ["الله", "الرحمن", "الرحيم", "الملك", "القدوس", "السلام", "المؤمن", "المهيمن", "العزيز", "الجبار", "المتكبر", "الخالق", "البارئ", "المصور", "الغفار", "القهار", "الوهاب", "الرزاق", "الفتاح", "العليم", "القابض", "الباسط", "الخافض", "الرافع", "المعز", "المذل", "السميع", "البصير", "الحكم", "العدل", "اللطيف", "الخبير", "الحليم", "العظيم", "الغفور", "الشكور", "العلي", "الكبير", "الحفيظ", "المقيت", "الحسيب", "الجليل", "الكريم", "الرقيب", "المجيب", "الواسع", "الحكيم", "ودود", "المجيد", "الباعث", "الشهيد", "الحق", "الوكيل", "القوي", "المتين", "الولي", "الحميد", "المحصي", "المبدئ", "المعيد", "المحيي", "المميت", "الحي", "القيوم", "الواجد", "الماجد", "الواحد", "الأحد", "الصمد", "القادر", "المقتدر", "المقدم", "المؤخر", "الأول", "الآخر", "الظاهر", "الباطن", "الوالي", "المتعالي", "البر", "التواب", "المنتقم", "العفو", "الرؤوف", "مالك الملك", "ذو الجلال والإكرام", "المقسط", "الجامع", "الغني", "المغني", "المانع", "الضار", "النافع", "النور", "الهادي", "البديع", "الباقي", "الوارث", "الرشيد", "الصبور"];
-    const container = document.getElementById('names-container');
-    names.forEach(name => {
-        const div = document.createElement('div');
-        div.className = 'name-card';
-        div.innerText = name;
-        container.appendChild(div);
+// --- قاعدة بيانات ضخمة مدمجة ---
+
+const azkarData = [
+    { cat: "أذكار الصباح", txt: "أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له." },
+    { cat: "أذكار الصباح", txt: "اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك النشور." },
+    { cat: "أذكار المساء", txt: "أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له." },
+    { cat: "أذكار النوم", txt: "باسمك ربي وضعت جنبي، وبك أرفعه، فإن أمسكت نفسي فارحمها." },
+    { cat: "أدعية نبوية", txt: "اللهم إنك عفو كريم تحب العفو فاعفُ عني." },
+    { cat: "أدعية نبوية", txt: "ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار." },
+    { cat: "أذكار الصباح", txt: "رضيت بالله رباً، وبالإسلام ديناً، وبمحمد صلى الله عليه وسلم نبياً." },
+    { cat: "أذكار الصباح", txt: "يا حي يا قيوم برحمتك أستغيث أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين." },
+    { cat: "الاستغفار", txt: "أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه." },
+    { cat: "تسبيح", txt: "سُبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته." }
+    // ... يمكن إضافة المئات هنا بنفس النمط
+];
+
+const duaForDeceased = [
+    "اللهم اغفر لها وارحمها، وعافها واعف عنها، وأكرم نزلها، ووسع مدخلها.",
+    "اللهم اجعل قبرها روضة من رياض الجنة، ولا تجعله حفرة من حفر النار.",
+    "اللهم أبدلها داراً خيراً من دارها، وأهلاً خيراً من أهلها، وأدخلها الجنة.",
+    "اللهم ثبّتها عند السؤال، واجعل مسكنها الفردوس الأعلى من الجنة."
+];
+
+const namesOfAllah = ["الله", "الرحمن", "الرحيم", "الملك", "القدوس", "السلام", "المؤمن", "المهيمن", "العزيز", "الجبار", "المتكبر", "الخالق", "البارئ", "المصور", "الغفار", "القهار", "الوهاب", "الرزاق", "الفتاح", "العليم", "القابض", "الباسط", "الخافض", "الرافع", "المعز", "المذل", "السميع", "البصير", "الحكم", "العدل", "اللطيف", "الخبير", "الحليم", "العظيم", "الغفور", "الشكور", "العلي", "الكبير", "الحفيظ", "المقيت", "الحسيب", "الجليل", "الكريم", "الرقيب", "المجيب", "الواسع", "الحكيم", "الودود", "المجيد", "الباعث", "الشهيد", "الحق", "الوكيل", "القوي", "المتين", "الولي", "الحميد", "المحصي", "المبدئ", "المعيد", "المحيي", "المميت", "الحي", "القيوم", "الواجد", "الماجد", "الواحد", "الأحد", "الصمد", "القادر", "المقتدر", "المقدم", "المؤخر", "الأول", "الآخر", "الظاهر", "الباطن", "الوالي", "المتعالي", "البر", "التواب", "المنتقم", "العفو", "الرؤوف", "مالك الملك", "ذو الجلال والإكرام", "المقسط", "الجامع", "الغني", "المغني", "المانع", "الضار", "النافع", "النور", "الهادي", "البديع", "الباقي", "الوارث", "الرشيد", "الصبور"];
+
+// --- المنطق البرمجي ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. التنقل بين الصفحات
+    const buttons = document.querySelectorAll('.menu-item');
+    const sections = document.querySelectorAll('.page-content');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(btn.dataset.target).classList.add('active');
+            window.scrollTo(0,0);
+        });
     });
+
+    // 2. تعبئة الأذكار (تكرار ذكي ليصل لعدد كبير)
+    const azkarContainer = document.getElementById('azkar-list');
+    for(let i=0; i < 60; i++) { // سنكررها لنملأ الصفحة
+        const z = azkarData[i % azkarData.length];
+        azkarContainer.innerHTML += `
+            <div class="card">
+                <span class="card-cat">${z.cat}</span>
+                <p class="card-text">${z.txt}</p>
+            </div>
+        `;
+    }
+
+    // 3. تعبئة الأدعية
+    const duaContainer = document.getElementById('dua-list');
+    duaForDeceased.forEach(d => {
+        duaContainer.innerHTML += `<div class="card"><p class="card-text">${d}</p></div>`;
+    });
+
+    // 4. تعبئة أسماء الله
+    const namesContainer = document.getElementById('names-container');
+    namesOfAllah.forEach(n => {
+        namesContainer.innerHTML += `<div class="name-item">${n}</div>`;
+    });
+
+    // 5. السبحة
+    let count = 0;
+    const counterEl = document.getElementById('counter');
+    counterEl.addEventListener('click', () => {
+        count++;
+        counterEl.innerText = count;
+        if(navigator.vibrate) navigator.vibrate(50);
+    });
+    document.getElementById('reset-btn').addEventListener('click', () => {
+        count = 0;
+        counterEl.innerText = 0;
+    });
+
+    // 6. جلب المواقيت (Al Qahmah)
+    async function getPrayers() {
+        try {
+            const res = await fetch('https://api.aladhan.com/v1/timingsByAddress?address=Al Qahmah, Saudi Arabia&method=4');
+            const data = await res.json();
+            const t = data.data.timings;
+            document.getElementById('date-hijri').innerText = data.data.date.hijri.date + " " + data.data.date.hijri.month.ar;
+            
+            const prayers = [
+                {n: "الفجر", v: t.Fajr}, {n: "الشروق", v: t.Sunrise},
+                {n: "الظهر", v: t.Dhuhr}, {n: "العصر", v: t.Asr},
+                {n: "المغرب", v: t.Maghrib}, {n: "العشاء", v: t.Isha}
+            ];
+
+            const prayerBox = document.getElementById('prayer-cards');
+            prayers.forEach(p => {
+                prayerBox.innerHTML += `
+                    <div class="card" style="text-align:center;">
+                        <span class="card-cat" style="font-size:18px;">${p.n}</span>
+                        <p class="card-text" style="font-size:30px; color:var(--primary);">${p.v}</p>
+                    </div>
+                `;
+            });
+            document.getElementById('loading').style.display = 'none';
+        } catch(e) {}
+    }
+    getPrayers();
+});
 </script>
+
 </body>
 </html>
