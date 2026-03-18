@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>غيث القحمة | صدقة جارية</title>
+    <title>صدقة جارية | تطبيق طمأنينة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,49 +12,71 @@
 <div class="app-container">
     <aside class="sidebar">
         <div class="app-logo">
-            <i class="fa-solid fa-heart-pulse"></i>
-            <h2>غيث القحمة</h2>
-            <small>صدقة جارية عن والدة إياد</small>
+            <i class="fa-solid fa-kaaba" style="font-size: 40px; color: var(--accent);"></i>
+            <h2 style="margin-top:10px;">صدقة جارية</h2>
+            <p style="font-size:12px; opacity:0.8;">اللهم اغفر لفقيدتنا وارحمها</p>
         </div>
-        <button class="menu-item active" data-target="home-page"><i class="fa-solid fa-mosque"></i> مواقيت الصلاة</button>
-        <button class="menu-item" data-target="quran-page"><i class="fa-solid fa-book-open"></i> المصحف الإلكتروني</button>
-        <button class="menu-item" data-target="azkar-page"><i class="fa-solid fa-rosary"></i> حصن المسلم</button>
-        <button class="menu-item" data-target="sebha-page"><i class="fa-solid fa-circle-dot"></i> السبحة الذكية</button>
-        <button class="menu-item" data-target="masajid-page"><i class="fa-solid fa-map-location-dot"></i> مساجد القحمة</button>
-        <button class="menu-item" data-target="about-qahmah-page"><i class="fa-solid fa-city"></i> عن القحمة</button>
+        
+        <nav class="nav-menu">
+            <button class="menu-item active" data-target="azkar-section"><i class="fa-solid fa-heart"></i> الأذكار اليومية</button>
+            <button class="menu-item" data-target="prayers-section"><i class="fa-solid fa-clock"></i> مواقيت الصلاة</button>
+            <button class="menu-item" data-target="sebha-section"><i class="fa-solid fa-fingerprint"></i> سبحة إلكترونية</button>
+            <button class="menu-item" data-target="quran-section"><i class="fa-solid fa-book-open"></i> المصحف الكريم</button>
+            <button class="menu-item" data-target="dua-section"><i class="fa-solid fa-hands-praying"></i> أدعية للمتوفى</button>
+            <button class="menu-item" data-target="names-section"><i class="fa-solid fa-star"></i> أسماء الله الحسنى</button>
+        </nav>
     </aside>
 
     <main class="main-content">
-        <div id="home-page" class="page-content">
+        
+        <div id="azkar-section" class="page-content">
+            <h1 class="location-title">حصن المسلم</h1>
+            <div class="azkar-grid">
+                <div class="zekr-card"><small>الصباح</small><p class="card-text">أصبحنا وأصبح الملك لله والحمد لله.</p></div>
+                <div class="zekr-card"><small>الصباح</small><p class="card-text">اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت.</p></div>
+                <div class="zekr-card"><small>الصباح</small><p class="card-text">رضيت بالله رباً وبالإسلام ديناً وبمحمد نبياً.</p></div>
+                <div class="zekr-card"><small>المساء</small><p class="card-text">أمسينا وأمسى الملك لله والحمد لله.</p></div>
+                <div class="zekr-card"><small>المساء</small><p class="card-text">أعوذ بكلمات الله التامات من شر ما خلق.</p></div>
+                <div class="zekr-card"><small>المساء</small><p class="card-text">اللهم إنك عفو كريم تحب العفو فاعفُ عني.</p></div>
+                <div class="zekr-card"><small>استغفار</small><p class="card-text">أستغفر الله العظيم واتوب إليه (100 مرة).</p></div>
+                <div class="zekr-card"><small>تسبيح</small><p class="card-text">سبحان الله وبحمده سبحان الله العظيم.</p></div>
+                <div class="zekr-card"><small>تذكير</small><p class="card-text">لا حول ولا قوة إلا بالله العلي العظيم.</p></div>
+                <div class="zekr-card"><small>تذكير</small><p class="card-text">سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر.</p></div>
+                </div>
+        </div>
+
+        <div id="prayers-section" class="page-content" style="display: none;">
             <div class="header">
-                <h1 class="location-title">مواقيت الصلاة في القحمة</h1>
-                <p id="gregorian-date" class="date-container">جاري التحميل...</p>
+                <h1 class="location-title">مواقيت الصلاة</h1>
+                <p id="gregorian-date" class="date-container">جاري التحديث...</p>
             </div>
-            <div id="loading" class="loading"><i class="fas fa-circle-notch fa-spin"></i> جاري تحديث الأوقات...</div>
+            <div id="loading" class="loading"><i class="fas fa-spinner fa-spin"></i> جاري جلب الأوقات...</div>
             <div class="prayers-grid" id="prayers-container" style="display: none;">
                 </div>
         </div>
 
-        <div id="quran-page" class="page-content" style="display: none;">
-            <div class="header"><h1 class="location-title">القرآن الكريم</h1></div>
-            <iframe src="https://quran.com/" style="width:100%; height:80vh; border-radius:15px; border:none;"></iframe>
-        </div>
-
-        <div id="azkar-page" class="page-content" style="display: none;"></div>
-        <div id="masajid-page" class="page-content" style="display: none;"></div>
-        
-        <div id="sebha-page" class="page-content" style="display: none;">
+        <div id="sebha-section" class="page-content" style="display: none;">
             <div class="sebha-container">
-                <h2 style="color:var(--primary); margin-bottom:20px;">ألا بذكر الله تطمئن القلوب</h2>
                 <div class="sebha-counter" id="sebha-count">0</div>
-                <button class="sebha-btn" id="sebha-click-btn">سبّح</button>
-                <button class="reset-btn" id="sebha-reset-btn">إعادة العداد ↺</button>
+                <button class="sebha-btn" id="sebha-click-btn">اضغط للتسبيح</button>
+                <button class="reset-btn" id="sebha-reset-btn">تصفير العداد ↺</button>
             </div>
         </div>
 
-        <div id="about-qahmah-page" class="page-content" style="display: none;">
-            <div class="about-grid" id="about-data"></div>
+        <div id="quran-section" class="page-content" style="display: none;">
+            <iframe src="https://quran.com/" style="width:100%; height:85vh; border:none; border-radius:15px;"></iframe>
         </div>
+
+        <div id="dua-section" class="page-content" style="display: none;">
+            <h1 class="location-title">أدعية مأثورة للمتوفى</h1>
+            <div class="about-grid">
+                <div class="about-card"><p class="card-text">اللهم اغفر لها وارحمها، وعافها واعف عنها، وأكرم نزلها.</p></div>
+                <div class="about-card"><p class="card-text">اللهم أبدلها داراً خيراً من دارها، وأهلاً خيراً من أهلها.</p></div>
+                <div class="about-card"><p class="card-text">اللهم اجعل قبرها روضة من رياض الجنة ولا تجعله حفرة من حفر النار.</p></div>
+                <div class="about-card"><p class="card-text">اللهم ثبّتها عند السؤال، ونقّها من الخطايا كما ينقى الثوب الأبيض من الدنس.</p></div>
+            </div>
+        </div>
+
     </main>
 </div>
 
