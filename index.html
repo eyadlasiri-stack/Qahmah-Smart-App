@@ -4,85 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تطبيق طمأنينة | صدقة جارية</title>
-    <!-- خط تجوال وأيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* إضافة لمسات سريعة للتنسيق لضمان عمل الأقسام الجديدة */
-        .quran-container { width: 100%; height: 80vh; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .dua-card { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-right: 5px solid var(--primary); font-size: 18px; line-height: 1.6; }
-        .category-header { color: var(--secondary); margin: 25px 0 15px; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 5px; }
+        /* إضافة تنسيقات إضافية للأقسام الجديدة لضمان الفخامة */
+        :root { --gold: #D4AF37; --deep-green: #1B4332; }
+        .dua-section-title { background: var(--primary); color: white; padding: 10px 20px; border-radius: 10px; margin: 20px 0; font-size: 20px; text-align: center; }
+        .azkar-counter-btn { background: var(--accent); border: none; padding: 5px 15px; border-radius: 5px; color: white; cursor: pointer; float: left; }
+        .quran-frame { width: 100%; height: 85vh; border: 5px solid var(--primary); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .names-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
+        .name-card { background: white; padding: 15px; text-align: center; border-radius: 10px; border: 1px solid var(--accent); font-weight: bold; color: var(--secondary); box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
 
 <div class="app-container">
-    <!-- القائمة الجانبية المطورة -->
     <aside class="sidebar">
         <div class="app-logo">
-            <i class="fa-solid fa-kaaba" style="font-size: 50px; color: var(--accent);"></i>
-            <h2 style="margin-top:15px; font-weight: 900;">طمأنينة</h2>
-            <p style="font-size:13px; color: #eee; margin-top: 5px;">صدقة جارية عن روح فقيدتنا</p>
+            <i class="fa-solid fa-kaaba" style="font-size: 45px; color: var(--accent);"></i>
+            <h2 style="margin-top:10px;">طمأنينة</h2>
+            <p style="font-size:11px; color:#ddd;">صدقة جارية عن روح فقيدتنا رحمها الله</p>
         </div>
         
         <nav class="nav-menu">
-            <button class="menu-item active" data-target="azkar-page"><i class="fa-solid fa-heart"></i> حصن المسلم</button>
-            <button class="menu-item" data-target="quran-page"><i class="fa-solid fa-book-open"></i> القرآن الكريم</button>
-            <button class="menu-item" data-target="prayer-page"><i class="fa-solid fa-clock"></i> مواقيت الصلاة</button>
-            <button class="menu-item" data-target="sebha-page"><i class="fa-solid fa-dharmachakra"></i> السبحة الرقمية</button>
-            <button class="menu-item" data-target="dua-page"><i class="fa-solid fa-hands-holding-child"></i> أدعية مأثورة</button>
+            <button class="menu-item active" data-target="home-page"><i class="fa-solid fa-clock"></i> مواقيت الصلاة</button>
+            <button class="menu-item" data-target="quran-page"><i class="fa-solid fa-book-quran"></i> المصحف الشريف</button>
+            <button class="menu-item" data-target="azkar-morning"><i class="fa-solid fa-sun"></i> أذكار الصباح</button>
+            <button class="menu-item" data-target="azkar-evening"><i class="fa-solid fa-moon"></i> أذكار المساء</button>
+            <button class="menu-item" data-target="azkar-sleep"><i class="fa-solid fa-bed"></i> أذكار النوم</button>
+            <button class="menu-item" data-target="dua-general"><i class="fa-solid fa-hands-praying"></i> جوامع الدعاء</button>
+            <button class="menu-item" data-target="dua-parents"><i class="fa-solid fa-heart"></i> بر الوالدين</button>
+            <button class="menu-item" data-target="names-page"><i class="fa-solid fa-star"></i> أسماء الله الحسنى</button>
+            <button class="menu-item" data-target="sebha-page"><i class="fa-solid fa-rosary"></i> السبحة الإلكترونية</button>
         </nav>
     </aside>
 
     <main class="main-content">
         
-        <!-- قسم الأذكار الشامل (أكثر من 50 ذكر) -->
-        <div id="azkar-page" class="page-content">
-            <h1 class="location-title"><i class="fa-solid fa-sun"></i> أذكار اليوم والليلة</h1>
-            <div id="azkar-container" class="azkar-grid">
-                <!-- سيتم ملؤها بـ 50+ ذكر من خلال JS -->
-            </div>
-        </div>
-
-        <!-- قسم القرآن الكريم -->
-        <div id="quran-page" class="page-content" style="display: none;">
-            <h1 class="location-title"><i class="fa-solid fa-book"></i> المصحف الإلكتروني</h1>
-            <div class="quran-container">
-                <iframe src="https://quran.com/" style="width:100%; height:100%; border:none;"></iframe>
-            </div>
-        </div>
-
-        <!-- قسم مواقيت الصلاة -->
-        <div id="prayer-page" class="page-content" style="display: none;">
+        <!-- 1. مواقيت الصلاة -->
+        <div id="home-page" class="page-content">
             <div class="header">
                 <h1 class="location-title">مواقيت الصلاة</h1>
-                <p id="gregorian-date" class="date-container">جاري جلب التاريخ...</p>
+                <p id="gregorian-date" class="date-container">جاري التحميل...</p>
             </div>
-            <div id="loading" class="loading"><i class="fas fa-spinner fa-spin"></i> جاري تحديث الأوقات...</div>
-            <div class="prayers-grid" id="prayers-container" style="display: none;">
-                <!-- محتوى الصلاة يظهر هنا عبر JS -->
+            <div id="loading" class="loading"><i class="fas fa-spinner fa-spin"></i> جاري جلب المواقيت...</div>
+            <div class="prayers-grid" id="prayers-container" style="display: none;"></div>
+        </div>
+
+        <!-- 2. المصحف الشريف -->
+        <div id="quran-page" class="page-content" style="display: none;">
+            <iframe src="https://quran.com/" class="quran-frame"></iframe>
+        </div>
+
+        <!-- 3. أذكار الصباح (قاعدة بيانات مدمجة) -->
+        <div id="azkar-morning" class="page-content" style="display: none;">
+            <h1 class="location-title">أذكار الصباح</h1>
+            <div class="azkar-grid">
+                <div class="zekr-card"><p>أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له.</p></div>
+                <div class="zekr-card"><p>اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك النشور.</p></div>
+                <div class="zekr-card"><p>اللهم إني أسألك علماً نافعاً، ورزقاً طيباً، وعملاً متقبلاً.</p></div>
+                <div class="zekr-card"><p>يا حي يا قيوم برحمتك أستغيث أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.</p></div>
+                <div class="zekr-card"><p>رضيت بالله رباً، وبالإسلام ديناً، وبمحمد صلى الله عليه وسلم نبياً.</p></div>
+                <div class="zekr-card"><p>حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم (7 مرات).</p></div>
+                <div class="zekr-card"><p>سبحان الله وبحمده: عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته (3 مرات).</p></div>
+                <div class="zekr-card"><p>بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم (3 مرات).</p></div>
+                <div class="zekr-card"><p>اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري.</p></div>
+                <div class="zekr-card"><p>أستغفر الله وأتوب إليه (100 مرة في اليوم).</p></div>
             </div>
         </div>
 
-        <!-- قسم السبحة -->
+        <!-- 4. أذكار المساء -->
+        <div id="azkar-evening" class="page-content" style="display: none;">
+            <h1 class="location-title">أذكار المساء</h1>
+            <div class="azkar-grid">
+                <div class="zekr-card"><p>أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له.</p></div>
+                <div class="zekr-card"><p>اللهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير.</p></div>
+                <div class="zekr-card"><p>أعوذ بكلمات الله التامات من شر ما خلق (3 مرات).</p></div>
+                <div class="zekr-card"><p>اللهم إني أسألك العفو والعافية في الدنيا والآخرة.</p></div>
+                <div class="zekr-card"><p>اللهم عالم الغيب والشهادة فاطر السموات والأرض، رب كل شيء ومليكه.</p></div>
+            </div>
+        </div>
+
+        <!-- 5. جوامع الدعاء -->
+        <div id="dua-general" class="page-content" style="display: none;">
+            <h1 class="location-title">أدعية من القرآن والسنة</h1>
+            <div class="dua-card">ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.</div>
+            <div class="dua-card">اللهم إنك عفو كريم تحب العفو فاعفُ عني.</div>
+            <div class="dua-card">اللهم إني أسألك الهدى والتقى والعفاف والغنى.</div>
+            <div class="dua-card">ربنا لا تزغ قلوبنا بعد إذ هديتنا وهب لنا من لدنك رحمة.</div>
+            <div class="dua-card">يا مقلب القلوب ثبت قلبي على دينك.</div>
+            <div class="dua-card">اللهم صلِ وسلم على نبينا محمد وعلى آله وصحبه أجمعين.</div>
+        </div>
+
+        <!-- 6. أسماء الله الحسنى -->
+        <div id="names-page" class="page-content" style="display: none;">
+            <h1 class="location-title">أسماء الله الحسنى</h1>
+            <div class="names-grid" id="names-container">
+                <!-- سيتم ملؤها بـ 99 اسم برمجياً -->
+            </div>
+        </div>
+
+        <!-- 7. السبحة -->
         <div id="sebha-page" class="page-content" style="display: none;">
             <div class="sebha-container">
                 <div class="sebha-counter" id="sebha-count">0</div>
-                <button class="sebha-btn" id="sebha-click-btn">سبّح</button>
-                <button class="reset-btn" id="sebha-reset-btn">تصفير العداد</button>
-                <p style="margin-top: 20px; color: var(--primary);">"فاذكروني أذكركم"</p>
-            </div>
-        </div>
-
-        <!-- قسم الأدعية -->
-        <div id="dua-page" class="page-content" style="display: none;">
-            <h1 class="location-title">جامع الدعاء</h1>
-            <div class="dua-list">
-                <div class="dua-card">اللهم اغفر لجميع موتى المسلمين الذين شهدوا لك بالوحدانية ولنبيك بالرسالة وماتوا على ذلك.</div>
-                <div class="dua-card">اللهم آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.</div>
-                <div class="dua-card">يا حي يا قيوم برحمتك أستغيث، أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.</div>
-                <div class="dua-card">اللهم إنك عفو كريم تحب العفو فاعفُ عنا.</div>
-                <div class="dua-card">ربّنا هب لنا من أزواجنا وذرياتنا قرة أعين واجعلنا للمتقين إماماً.</div>
+                <button class="sebha-btn" id="sebha-click-btn">اضغط للتسبيح</button>
+                <button class="reset-btn" id="sebha-reset-btn">إعادة العداد</button>
             </div>
         </div>
 
@@ -90,5 +117,16 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+    // إضافة أسماء الله الحسنى برمجياً لتوفير المساحة في HTML
+    const names = ["الله", "الرحمن", "الرحيم", "الملك", "القدوس", "السلام", "المؤمن", "المهيمن", "العزيز", "الجبار", "المتكبر", "الخالق", "البارئ", "المصور", "الغفار", "القهار", "الوهاب", "الرزاق", "الفتاح", "العليم", "القابض", "الباسط", "الخافض", "الرافع", "المعز", "المذل", "السميع", "البصير", "الحكم", "العدل", "اللطيف", "الخبير", "الحليم", "العظيم", "الغفور", "الشكور", "العلي", "الكبير", "الحفيظ", "المقيت", "الحسيب", "الجليل", "الكريم", "الرقيب", "المجيب", "الواسع", "الحكيم", "ودود", "المجيد", "الباعث", "الشهيد", "الحق", "الوكيل", "القوي", "المتين", "الولي", "الحميد", "المحصي", "المبدئ", "المعيد", "المحيي", "المميت", "الحي", "القيوم", "الواجد", "الماجد", "الواحد", "الأحد", "الصمد", "القادر", "المقتدر", "المقدم", "المؤخر", "الأول", "الآخر", "الظاهر", "الباطن", "الوالي", "المتعالي", "البر", "التواب", "المنتقم", "العفو", "الرؤوف", "مالك الملك", "ذو الجلال والإكرام", "المقسط", "الجامع", "الغني", "المغني", "المانع", "الضار", "النافع", "النور", "الهادي", "البديع", "الباقي", "الوارث", "الرشيد", "الصبور"];
+    const container = document.getElementById('names-container');
+    names.forEach(name => {
+        const div = document.createElement('div');
+        div.className = 'name-card';
+        div.innerText = name;
+        container.appendChild(div);
+    });
+</script>
 </body>
 </html>
