@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <div class="app-container">
+  <aside class="sidebar">
+      <h2>تراث القحمة</h2>
+      <button class="menu-item active" data-target="home-page">الرئيسية</button>
+      <button class="menu-item" data-target="about-qahmah-page">عن القحمة</button>
+      <button class="menu-item" data-target="sebha-page">السبحة الإلكترونية</button>
+      <button class="menu-item" data-target="azkar-page">الأذكار</button>
+      <button class="menu-item" data-target="today-page">جدول اليوم</button>
+      <button class="menu-item" data-target="month-page">التقويم الشهري</button>
+      <button class="menu-item" data-target="qibla-page">اتجاه القبلة</button>
+      <button class="menu-item" data-target="masajid-page">مساجد القحمة</button>
+      <button class="menu-item" data-target="settings-page">الإعدادات</button>
+      <button class="menu-item" data-target="about-app-page">حول التطبيق</button>
+  </aside>
+
+  <main class="main-content">
+      
+      <div id="home-page" class="page-content">
+          <div class="header">
+              <h1 class="location-title">مواقيت الصلاة في مركز القحمة</h1>
+              <div class="date-container" id="gregorian-date">جاري التحميل...</div>
+          </div>
+          <div id="loading" class="loading">جاري جلب أوقات الصلاة...</div>
+          <div class="prayers-grid" id="prayers-container" style="display: none;">
+              <div class="prayer-card"><div class="prayer-name">الفجر</div><div class="prayer-time" id="fajr-time">--:--</div></div>
+              <div class="prayer-card"><div class="prayer-name">الشروق</div><div class="prayer-time" id="sunrise-time">--:--</div></div>
+              <div class="prayer-card"><div class="prayer-name">الظهر</div><div class="prayer-time" id="dhuhr-time">--:--</div></div>
+              <div class="prayer-card"><div class="prayer-name">العصر</div><div class="prayer-time" id="asr-time">--:--</div></div>
+              <div class="prayer-card"><div class="prayer-name">المغرب</div><div class="prayer-time" id="maghrib-time">--:--</div></div>
+              <div class="prayer-card"><div class="prayer-name">العشاء</div><div class="prayer-time" id="isha-time">--:--</div></div>
+          </div>
+      </div>
+
+      <div id="about-qahmah-page" class="page-content" style="display: none;">
+          <div class="header">
+              <h1 class="location-title">عن القحمة .. أصالة التاريخ وجمال الطبيعة</h1>
+          </div>
+          <div class="about-grid">
+              <div class="about-card">
+                  <h3 class="card-title">📍 الموقع والعنوان</h3>
+                  <p class="card-text">يقع مركز القحمة على الساحل الغربي للمملكة، ويتبع لإمارة منطقة عسير. تبعد عن أبها حوالي 160 كم، وتتميز بموقعها الاستراتيجي كمشتى دافئ ومثالي لأهالي المرتفعات.</p>
+              </div>
+              <div class="about-card">
+                  <h3 class="card-title">📜 تاريخ عريق وأصالة</h3>
+                  <p class="card-text">تعتبر القحمة من أقدم المدن التاريخية في عسير (تأسس المركز 1340هـ). كانت الميناء البحري الأول للمنطقة الجنوبية، وأهلها يعتزون بتراثهم البحري الأصيل.</p>
+              </div>
+              <div class="about-card" style="grid-column: 1 / -1;">
+                  <h3 class="card-title">🏝️ طبيعة خلابة وجزر ساحرة</h3>
+                  <p class="card-text">تجمع القحمة بين جمال البحر والشواطئ الهادئة. من أشهر معالمها السياحية "جزيرة جبل كدمبل"، وهي جزيرة يبرز فيها جبل بركاني تحيط به المياه الزرقاء، وتعتبر مقصداً شهيراً لعشاق التخييم.</p>
+              </div>
+          </div>
+      </div>
+
+      <div id="sebha-page" class="page-content" style="display: none;">
+          <div class="header">
+              <h1 class="location-title">السبحة الإلكترونية</h1>
+          </div>
+          <div class="sebha-container">
+              <div class="sebha-counter" id="sebha-count">0</div>
+              <button class="sebha-btn" id="sebha-click-btn">سبّح</button>
+              <button class="reset-btn" id="sebha-reset-btn">تصفير العداد ↺</button>
+          </div>
+      </div>
+
+      <div id="azkar-page" class="page-content" style="display: none;">
+          <div class="header">
+              <h1 class="location-title">حصن المسلم (مقتطفات)</h1>
+          </div>
+          <div class="azkar-grid">
+              <div class="zekr-card"><h3 class="card-title">☀️ من أذكار الصباح</h3><p class="card-text">"اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ."</p></div>
+              <div class="zekr-card"><h3 class="card-title">🌙 من أذكار المساء</h3><p class="card-text">"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ لا إِلَهَ إِلاَّ اللَّهُ، وَحْدَهُ لا شَرِيكَ لَهُ."</p></div>
+              <div class="zekr-card"><h3 class="card-title">🕌 بعد الصلاة المكتوبة</h3><p class="card-text">"اللَّهُمَّ أَنْتَ السَّلَامُ، وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ."</p></div>
+              <div class="zekr-card"><h3 class="card-title">📿 سيد الاستغفار</h3><p class="card-text">"اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ."</p></div>
+          </div>
+      </div>
+
+      <div id="today-page" class="page-content" style="display: none;"><h1 class="location-title">جدول اليوم (قريباً...)</h1></div>
+      <div id="month-page" class="page-content" style="display: none;"><h1 class="location-title">التقويم الشهري (قريباً...)</h1></div>
+      <div id="qibla-page" class="page-content" style="display: none;"><h1 class="location-title">اتجاه القبلة (قريباً...)</h1></div>
+      <div id="masajid-page" class="page-content" style="display: none;"><h1 class="location-title">مساجد القحمة (قريباً...)</h1></div>
+      <div id="settings-page" class="page-content" style="display: none;"><h1 class="location-title">الإعدادات (قريباً...)</h1></div>
+      <div id="about-app-page" class="page-content" style="display: none;"><h1 class="location-title">حول التطبيق (قريباً...)</h1></div>
+
+  </main>
+</div>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
