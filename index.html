@@ -12,110 +12,229 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>نسخة التجارب - مباشر ليلة الحسم</title>
+    <title>بطولة القحمة الرمضانية 28 - النهائي الكبير</title>
     
+    <meta name="google-site-verification" content="OW252jrJC6EhalNrLRFKoEr2VA7hblIx5NfCzw5CP34" />
+    <meta name="description" content="الموقع والتطبيق الشامل لبطولة القحمة الرمضانية 28 - البث المباشر للنتيجة لحظة بلحظة.">
+    <meta name="author" content="إياد عسيري">
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
+        /* ========= ستايل الذهب الملكي المعتمد ========= */
         :root { 
-            --gold-main: #d4af37; --gold-grad: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%);
+            --gold-main: #d4af37; --gold-light: #f3e5ab; --gold-dark: #aa8c2c; 
+            --gold-grad: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%);
             --black-bg: #0a0a0a; --black-card: #141414; --glass-border: rgba(212, 175, 55, 0.15); 
-            --text-main: #f8fafc;
+            --text-main: #f8fafc; --text-muted: #a0a0a0; --green-neon: #10b981;
         }
         
+        html { background-color: var(--black-bg); touch-action: manipulation; scroll-behavior: smooth; }
         body { 
             margin: 0; padding: 0; min-height: 100vh;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
-            color: var(--text-main); font-family: 'Cairo', sans-serif;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a1a, #0f0f0f, #0a0a0a);
+            background-size: 400% 400%; animation: gradientBG 20s ease infinite;
+            color: var(--text-main); font-family: 'Cairo', sans-serif; line-height: 1.6; font-size: 0.9rem; 
+            -webkit-tap-highlight-color: transparent;
         }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* تأثير الدخان المذهب */
-        .golden-smoke-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.2) 0%, transparent 80%);
-            filter: blur(20px); z-index: 1; pointer-events: none; animation: drift 5s infinite alternate;
+        /* شاشة التحميل الملكية */
+        #preloader { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #000; z-index: 99999; display: flex; justify-content: center; align-items: center; 
+            transition: opacity 0.25s ease-out, visibility 0.25s ease-out; 
         }
-        @keyframes drift { 0% { opacity: 0.4; transform: scale(1); } 100% { opacity: 0.7; transform: scale(1.1); } }
-
-        /* ستايل المباشر الصغير بالأسفل */
-        .live-status-mini {
-            display: inline-flex; align-items: center; gap: 5px;
-            background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3);
-            padding: 2px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 700;
-            color: #ef4444; margin-top: 10px;
+        #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .preloader-logo { 
+            width: 130px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); 
+            animation: gentlePulse 2s ease-in-out infinite; 
         }
-        .live-dot-mini { width: 6px; height: 6px; background: #ef4444; border-radius: 50%; animation: blink 0.8s infinite alternate; }
-        @keyframes blink { from { opacity: 1; } to { opacity: 0.3; } }
+        @keyframes gentlePulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } }
 
-        .container { max-width: 500px; margin: auto; padding: 20px; text-align: center; }
+        /* ========= ستايلات عامة وتنسيق التصميم الجديد الملكي ========= */
+        .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
         
+        header { 
+            text-align: center; padding: 20px 0; background: linear-gradient(to bottom, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.9)); 
+            border: 1px solid var(--glass-border); border-top: none; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; 
+            margin-bottom: 20px; margin-top: -12px; position: relative; overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+        }
+        .logo-img { width: 90px; height: auto; display: block; margin: 0 auto 8px; filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.2)); }
+        header h1 { font-weight: 900; margin: 0; font-size: 1.3rem; color: var(--gold-light); text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
+        .stadium-tag { color: var(--gold-main); font-size: 0.8rem; font-weight: 900; margin-top: 5px; display: block; letter-spacing: 1px; text-shadow: 0 0 8px rgba(212,175,55,0.5); }
+        
+        .info-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .stat-badge { background: var(--black-card); border: 1px solid var(--glass-border); box-shadow: 0 5px 15px rgba(0,0,0,0.5); padding: 5px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; color: var(--gold-light); display: inline-flex; align-items: center; gap: 5px; }
+        .dot-red { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; animation: redPulse 1.5s infinite; border-radius: 50%; display: inline-block; width: 8px; height: 8px; margin: 0 4px; }
+        @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+
+        /* ======= تنسيق الكرت الجديد كلياً ليتطابق مع الصورة المطلوبة ======= */
         .champions-card { 
-            border-radius: 25px; position: relative; overflow: hidden; padding: 30px 15px;
-            border: 1px solid var(--glass-border); background: #111;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+            border-radius: 25px; position: relative; overflow: hidden; text-align: center;
+            padding: 30px 15px; margin-top: 5px; border: 1px solid rgba(212,175,55,0.3); 
+            background: linear-gradient(180deg, #111 0%, #050505 100%); 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(212,175,55,0.05);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
 
-        /* منطقة النتيجة الأفقية */
-        .match-row { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
-        .team-box { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .team-logo { width: 65px; height: 65px; object-fit: contain; filter: drop-shadow(0 5px 10px #000); }
-        .team-name { font-size: 0.9rem; font-weight: 800; color: #f3e5ab; }
-
-        .score-center { 
-            flex: 1.5; display: flex; flex-direction: column; align-items: center; justify-content: center;
-        }
-        .score-numbers {
-            font-size: 2.2rem; font-weight: 900; color: #fff; letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(212,175,55,0.5); font-family: sans-serif;
-            background: rgba(255,255,255,0.03); padding: 5px 15px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);
+        /* تنسيق الصف الأفقي الرئيسي للشعارات والنتيجة */
+        .match-main-row {
+            display: flex; justify-content: space-between; align-items: center;
+            width: 100%; max-width: 400px; /* تحديد عرض معقول ومتناسق */
+            position: relative; z-index: 2; margin-bottom: 20px;
         }
 
-        header { margin-bottom: 30px; }
-        .logo-top { width: 80px; margin-bottom: 10px; }
-        h1 { font-size: 1.1rem; margin: 0; color: var(--gold-light); }
+        /* تنسيق صندوق كل فريق (شعار + اسم) */
+        .team-box {
+            flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;
+        }
+        .team-logo-royal { 
+            width: 70px; height: 70px; object-fit: contain; 
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8)); 
+        }
+        .team-name-royal { 
+            font-size: 1rem; font-weight: 900; color: var(--gold-light); 
+            text-shadow: 0 2px 5px #000; white-space: nowrap;
+        }
+
+        /* تنسيق منطقة النتيجة والوقت في المنتصف */
+        .score-time-center {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            flex: 1.3; /* إعطاء مساحة أكبر قليلاً للوسط */
+            gap: 12px;
+        }
+
+        /* الوميض الهادئ خلف النتيجة */
+        .score-glow-bg {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            width: 120px; height: 120px; background: radial-gradient(circle, rgba(212,175,55,0.3) 0%, transparent 70%); 
+            z-index: 0; pointer-events: none;
+        }
+
+        /* تنسيق أرقام النتيجة الملكية */
+        .score-numbers-royal {
+            font-size: 2.8rem; font-weight: 900; color: #fff; letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(212,175,55,0.8), 0 0 10px #000;
+            font-family: sans-serif; position: relative; z-index: 2;
+        }
+
+        /* تنسيق الوقت/الحالة "الآن" الملكية */
+        .time-now-badge {
+            background: var(--gold-grad); color: #000; 
+            padding: 4px 15px; border-radius: 20px; font-weight: 900; font-size: 0.75rem;
+            box-shadow: 0 4px 10px rgba(212,175,55,0.4); white-space: nowrap; 
+            position: relative; z-index: 2; display: flex; align-items: center; gap: 5px;
+        }
+        .dot-blink { width: 6px; height: 6px; background: #dc2626; border-radius: 50%; animation: blinkBRed 1s infinite alternate; }
+        @keyframes blinkBRed { from { opacity: 1; } to { opacity: 0.3; } }
+
+        /* منطقة التفاعلات الجماهيرية تحت النتيجة */
+        .poll-container { 
+            background: rgba(20,20,20,0.6); border: 1px solid var(--glass-border); 
+            border-radius: 15px; padding: 15px; margin-top: 15px; width: 100%; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5); position: relative; z-index: 2;
+        }
+        .poll-title { font-size: 0.8rem; color: var(--gold-light); font-weight: 900; margin: 0 0 12px 0; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .poll-btns { display: flex; gap: 10px; justify-content: center; }
+        .poll-btn { 
+            background: var(--black-card); border: 1px solid rgba(212,175,55,0.3); color: var(--text-muted); 
+            font-size: 0.8rem; padding: 8px 0; flex: 1; border-radius: 8px; font-family: 'Cairo'; 
+            font-weight: 700; cursor: pointer; transition: 0.3s; 
+        }
+        .poll-btn:hover, .poll-btn:active { background: var(--gold-grad); color: #000; border-color: var(--gold-main); }
+        .poll-results-live { display: none; margin-top: 10px; }
+        .power-bar-bg { background: #222; border-radius: 10px; overflow: hidden; height: 6px; margin-bottom: 8px; width: 100%; border: 1px solid rgba(255,255,255,0.1); }
+        .power-bar-fill { background: var(--gold-grad); height: 100%; border-radius: 10px; transition: width 0.8s ease-out; }
+
+        /* الفوتر الملكي */
+        .footer { text-align: center; padding: 30px 12px 15px; background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent); margin-top: auto; border-top: 1px solid var(--glass-border); }
+        .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+        .social-btn { padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 0.65rem; font-weight: 700; color: #000; background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 2px 5px rgba(212,175,55,0.2); }
     </style>
 </head>
 <body>
 
+    <div id="preloader">
+        <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
+    </div>
+
     <div class="container">
-        <header>
-            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-top">
-            <h1>نهائي القحمة 28</h1>
+        <header id="main-header">
+            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img" crossorigin="anonymous">
+            <h1>بطولة القحمة الرمضانية 28</h1>
+            <span class="stadium-tag">البث المباشر للنتيجة 📡</span>
         </header>
+        
+        <div class="info-bar">
+            <div class="stat-badge"><span class="dot-red"></span> مباشر الآت <span id="weather-box" style="display:flex; align-items:center; gap:5px;">القحمة: 26°C ⛅</span></div>
+        </div>
 
-        <div class="champions-card">
-            <div class="golden-smoke-overlay"></div>
-            
-            <div class="match-row">
-                <div class="team-box">
-                    <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="team-logo">
-                    <span class="team-name">الفيصلي</span>
-                </div>
-
-                <div class="score-center">
-                    <div class="score-numbers" id="live-score">0 - 0</div>
+        <div id="today-match-area">
+            <div class="champions-card">
+                
+                <div class="match-main-row">
+                    <div class="team-box">
+                        <img src="https://i.ibb.co/6803h0K5/42-ED8497-6490-449-A-B56-A-658189568953.png" alt="شعار الفيصلي" class="team-logo-royal" crossorigin="anonymous">
+                        <span class="team-name-royal">الفيصلي</span>
+                    </div>
                     
-                    <div class="live-status-mini">
-                        <span class="live-dot-mini"></span> مباشر الآن
+                    <div class="score-time-center">
+                        <div class="score-glow-bg"></div>
+                        <div class="score-numbers-royal" id="live-score-display">
+                            0 - 0
+                        </div>
+                        <div class="time-now-badge">
+                            <span class="dot-blink"></span> يلعب الآن
+                        </div>
+                    </div>
+
+                    <div class="team-box">
+                        <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" alt="شعار الوسام" class="team-logo-royal" crossorigin="anonymous">
+                        <span class="team-name-royal">الوسام</span>
                     </div>
                 </div>
 
-                <div class="team-box">
-                    <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="team-logo">
-                    <span class="team-name">الوسام</span>
+                <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent); padding:8px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.2); margin-top: 10px; width: 100%;">
+                    <span style="font-size:0.75rem; color:var(--gold-light); font-weight:700; display:block; text-align:center;">ليلة الحسم.. من يرفع كأس البطولة الرمضانية؟🏆</span>
                 </div>
             </div>
+
+            <div class="poll-container" id="poll-widget">
+                <div class="poll-title">📊 شجع فريقك الآن! (مباشر)</div>
+                <div class="poll-btns" id="poll-buttons">
+                    <button class="poll-btn" onclick="submitPoll('faisaly')">الفيصلي 🦅</button>
+                    <button class="poll-btn" onclick="submitPoll('wesam')">الوسام ⚔️</button>
+                </div>
+                <div class="poll-results-live" id="poll-results-live"></div>
+            </div>
         </div>
-        
-        <p style="margin-top: 25px; font-size: 0.75rem; color: #666; font-weight: 700;">تتحدث النتيجة تلقائياً من الفايربيس دون تحديث 🚀</p>
+
+        <div class="footer">
+            <p style="font-weight:900; margin-bottom:2px; font-size:0.7rem; color:var(--gold-main);">👨‍💻 إعداد وبرمجة والتصميم الملكي: إياد عسيري</p>
+            <div class="social-mini"><a href="https://wa.me/966534987428" class="social-btn">واتساب المبرمج</a></div>
+            <p style="font-size:0.6rem; color:var(--text-muted); max-width: 700px; margin: 15px auto 0; line-height: 1.5; opacity: 0.6;">التحديث فوري للنتيجة الجية من الفايربيس بفضل الله.</p>
+        </div>
     </div>
+
+<script>
+// إخفاء الـ preloader بأناقة
+window.onload = function() { 
+    setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        preloader.classList.add('hidden');
+    }, 1200);
+};
+</script>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+  import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
+  // مفاتيح الفايربيس (جلبها من ملفك الأصلي)
   const p1 = "AIzaSyDMSL"; const p2 = "sTOf_zy8Ec"; const p3 = "sL-YZJPsUk"; const p4 = "8JHZVaT18";
   const firebaseConfig = {
     apiKey: p1 + p2 + p3 + p4,
@@ -127,15 +246,67 @@
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
   
+  // 📡 جلب النتيجة الحية من الفايربيس (تأكد من وجود المسار live_match_score)
   const liveScoreRef = ref(db, 'live_match_score');
   onValue(liveScoreRef, (snapshot) => {
       const data = snapshot.val();
-      if (data) {
-          const f = data.faisaly ?? 0;
-          const w = data.wesam ?? 0;
-          document.getElementById('live-score').innerText = `${f} - ${w}`;
+      const scoreDisplay = document.getElementById('live-score-display');
+      
+      if (data && scoreDisplay) {
+          // جلب الأهداف أو وضع صفر إذا لم تكن موجودة
+          let f_score = data.faisaly !== undefined ? data.faisaly : 0;
+          let w_score = data.wesam !== undefined ? data.wesam : 0;
+          
+          // تحديث النتيجة على الشاشة فوراً
+          scoreDisplay.innerText = f_score + " - " + w_score;
       }
   });
+
+  // 📊 نظام التشجيع المباشر (للتجربة من الفايربيس)
+  const pollRef = ref(db, 'poll_live_results'); // المسار في الفايربيس
+  onValue(pollRef, (snapshot) => {
+      let data = snapshot.val() || { faisaly: 0, wesam: 0 };
+      let fCount = data.faisaly || 0;
+      let wCount = data.wesam || 0;
+      let total = fCount + wCount;
+      if (total === 0) total = 1; 
+      
+      let fPercent = Math.round((fCount / total) * 100);
+      let wPercent = Math.round((wCount / total) * 100);
+
+      const liveResultsDiv = document.getElementById('poll-results-live');
+      if(liveResultsDiv) {
+          liveResultsDiv.innerHTML = `
+            <div style="margin-bottom:10px; text-align:right;">
+                <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:700; color:var(--gold-light); margin-bottom:4px;">
+                    <span>الفيصلي 🦅</span> <span>${fPercent}% (${fCount})</span>
+                </div>
+                <div class="power-bar-bg"><div class="power-bar-fill" style="width: ${fPercent}%;"></div></div>
+            </div>
+            <div style="text-align:right;">
+                <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:700; color:#fff; margin-bottom:4px;">
+                    <span>الوسام ⚔️</span> <span>${wPercent}% (${wCount})</span>
+                </div>
+                <div class="power-bar-bg"><div class="power-bar-fill" style="background:#fff; width: ${wPercent}%;"></div></div>
+            </div>
+          `;
+      }
+  });
+
+  // كود إرسال التصويت (يعمل لمرة واحدة لكل جهاز للتجربة)
+  window.submitPoll = function(team) {
+      if(localStorage.getItem('pollVotedLiveRoyal')) return; // منع التكرار
+      document.getElementById('poll-buttons').style.display = 'none'; // إخفاء الأزرار
+      document.getElementById('poll-results-live').style.display = 'block'; // إظهار النتائج
+      localStorage.setItem('pollVotedLiveRoyal', 'true'); // تخزين التصويت
+
+      // تحديث الفايربيس (المسار poll_live_results/team)
+      const teamRef = ref(db, `poll_live_results/${team}`);
+      runTransaction(teamRef, (current) => {
+          return (current || 0) + 1; // زيادة التصويت بـ 1
+      });
+  };
+
 </script>
 
 </body>
